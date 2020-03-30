@@ -9,17 +9,18 @@
 
 <div class="pokemon-list" *ngIf="!(isLoading$ | async)">
     <h1 class="pokemon-list__title" *ngIf="pokemonList$ | async">Pokemon List</h1>
-    <div class="pokemon-list__cards"  *ngFor="let pokemon of pokemonList$ | async | paginate: { itemsPerPage: ITEMS_PER_PAGE, currentPage: PAGE }">
+    <div class="pokemon-list__cards"  *ngFor="let pokemon of pokemonList$ | async">
       <a routerLink="/pokemon/{{pokemon.name}}" class="pokemon-list__card-item">
         <img src="./../../assets/img/pointer.png"/>
         <span>{{pokemon.name}}</span>
       </a>
     </div>
-    <p *ngIf="pokemonList$ | async">
-      <pagination-controls (pageChange)="PAGE = $event"></pagination-controls>
-    </p>
   </div>
   <div class="pokemon-list" *ngIf="!(isLoading$ | async) && !(pokemonList$ | async) && (isError$ | async)">
     <h1 class="pokemon-list__title">There is no pokemon :(</h1>
   </div>
-  <div *ngIf="isLoading$ | async" class="loading">Loading&#8230;</div>  
+  <div *ngIf="isLoading$ | async" class="loading">Loading&#8230;</div>
+  <div>
+    <button type="previous" style="background:blue" disabled = "btnDisable('previous')" (click) = "getPreviousData()">Previous</button>
+    <button type="Next" style="background:blue" disabled = "btnDisable('next')" (click) = "getUpcommingData()">Next</button>
+  </div>

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-// import { UserService } from './../user.service';
+import { UserService } from './../user.service';
 // import { Router } from '@angular/router';
 import {Observable} from 'rxjs';
 import {Pokemon} from './../model/pokemon/pokemon.model';
@@ -39,16 +39,24 @@ export class HomeComponent {
   public isLoading$: Observable<boolean>;
   public isError$: Observable<boolean>;
   public pokemonList$: Observable<Pokemon[]>;
-  public PAGE = 1;
-  public ITEMS_PER_PAGE = 18;
 
-  constructor(private store$: Store<RootStoreState.State>) {
+  constructor(private store$: Store<RootStoreState.State>, private UserService: UserService) {
     // Selectors
     this.isLoading$ = this.store$.select(PokemonListStoreSelectors.selectPokemonListError);
     this.isError$ = this.store$.select(PokemonListStoreSelectors.selectPokemonListIsLoading);
     this.pokemonList$ = this.store$.select(PokemonListStoreSelectors.selectPokemonList);
 
     // Actions
+    this.store$.dispatch(new PokemonListStoreActions.PokemonListLoadRequestAction());
+  }
+
+  getPreviousData (){
+    this.UserService.offset -= 30
+    this.store$.dispatch(new PokemonListStoreActions.PokemonListLoadRequestAction());
+  }
+
+  getUpcommingData () {
+    this.UserService.offset += 30
     this.store$.dispatch(new PokemonListStoreActions.PokemonListLoadRequestAction());
   }
 

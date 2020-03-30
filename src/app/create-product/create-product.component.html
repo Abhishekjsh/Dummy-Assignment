@@ -1,14 +1,18 @@
 <div style="padding-top: 15px;">
 <!-- Extended material form grid -->
-    <form>
+    <form [formGroup]="createForm">
         <!-- Grid row -->
-        <div class="form-row">
+        <div class="form-group form-row">
             <!-- Grid column -->
             <div class="col-md-4">
                 <!-- Material input -->
                 <div class="md-form form-group">
                 <label for="inputName">Name</label>
-                <input mdbInput type="text" class="form-control" id="inputName" placeholder="Name">
+                <input mdbInput type="text" class="form-control" id="inputName" name="name" placeholder="Name" formControlName="name"
+                autocomplete="off" [ngClass]="{ 'is-invalid': formErrors.name }" required>
+                </div>
+                <div *ngIf="formErrors.name" class="login__input-invalid-feedback">
+                    {{ formErrors.name }}
                 </div>
             </div>
             <!-- Grid column -->
@@ -16,7 +20,11 @@
                 <!-- Material input -->
                 <div class="md-form form-group">
                 <label for="inputDesc">Description</label>
-                <input mdbInput type="text" class="form-control" id="inputDesc" placeholder="Description">
+                <input mdbInput type="text" class="form-control" id="inputDesc" name="description" placeholder="Description" formControlName="description"
+                autocomplete="off" [ngClass]="{ 'is-invalid': formErrors.description }" required>
+                </div>
+                <div *ngIf="formErrors.description" class="login__input-invalid-feedback">
+                    {{ formErrors.description }}
                 </div>
             </div>
 
@@ -24,7 +32,11 @@
                 <!-- Material input -->
                 <div class="md-form form-group">
                 <label for="inputPrice">Price</label>
-                <input mdbInput type="Number" class="form-control" id="inputPrice" placeholder="Price">
+                <input mdbInput type="Number" class="form-control" id="inputPrice" placeholder="Price" name="price" placeholder="Description" formControlName="price"
+                autocomplete="off" [ngClass]="{ 'is-invalid': formErrors.price }" required>
+                </div>
+                <div *ngIf="formErrors.price" class="login__input-invalid-feedback">
+                    {{ formErrors.price }}
                 </div>
             </div>
 
