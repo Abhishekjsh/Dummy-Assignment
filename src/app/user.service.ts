@@ -12,6 +12,7 @@ import {Observable} from 'rxjs';
 })
 export class UserService {
   public offset: number = 0;
+  public isAdmin: boolean = true;
 
   constructor(private http: HttpClient) { }
   
