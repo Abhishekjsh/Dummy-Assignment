@@ -9,9 +9,8 @@
 
 <div class="pokemon-list" *ngIf="!(isLoading$ | async)">
     <h1 class="pokemon-list__title" *ngIf="pokemonList$ | async">Pokemon List</h1>
-    <div class="pokemon-list__cards">
-      <a routerLink="/{{pokemon.name}}" class="pokemon-list__card-item"
-         *ngFor="let pokemon of pokemonList$ | async | paginate: { itemsPerPage: ITEMS_PER_PAGE, currentPage: PAGE }">
+    <div class="pokemon-list__cards"  *ngFor="let pokemon of pokemonList$ | async | paginate: { itemsPerPage: ITEMS_PER_PAGE, currentPage: PAGE }">
+      <a routerLink="/pokemon/{{pokemon.name}}" class="pokemon-list__card-item">
         <img src="./../../assets/img/pointer.png"/>
         <span>{{pokemon.name}}</span>
       </a>

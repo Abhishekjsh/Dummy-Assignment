@@ -7,7 +7,7 @@ import { ProductListComponent } from './product-list/product-list.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: 'detail', component: DetailComponent },
+  { path: 'pokemon/:name', component: DetailComponent },
   { path: 'createProduct', component: CreateProductComponent },
   { path: 'productList', component: ProductListComponent },
   { path: '', redirectTo: 'Home', pathMatch: 'full' },
